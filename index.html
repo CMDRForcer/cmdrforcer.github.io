@@ -65,6 +65,54 @@
   "url": "https://cmdrforcer.github.io/"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is ED Engineering Companion free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. EDEC is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does EDEC upload my data anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I run EDEC alongside EDMC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Both read the same local Journal files independently, so EDEC runs alongside EDMC (and other Journal-reading tools) without conflict."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to create an account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No account is required to use EDEC. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What platforms and languages does EDEC support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EDEC runs on Windows 10 and 11, with the interface available in English, German, Spanish and French."
+      }
+    }
+  ]
+}
+</script>
 <style>
   :root{
     --bg:#0b1020; --bg2:#0e1426; --panel:#141c30; --panel-raised:#1c2740;
@@ -208,6 +256,27 @@
     color:var(--muted); padding:.6rem .3rem .1rem;
   }
 
+  /* ---------- faq ---------- */
+  .faq-list{display:flex; flex-direction:column; gap:.7rem; max-width:52rem;}
+  .faq-item{
+    border:1px solid var(--border); background:var(--panel); position:relative;
+  }
+  .faq-item::before,.faq-item::after{content:"";position:absolute;width:14px;height:14px;}
+  .faq-item::before{top:-1px;left:-1px;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan);}
+  .faq-item::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan);}
+  .faq-item summary{
+    list-style:none; cursor:pointer; padding:1.1rem 1.4rem; display:flex;
+    align-items:center; justify-content:space-between; gap:1rem;
+    font-family:var(--display); font-weight:600; color:var(--text); font-size:1.02rem;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .mark{
+    font-family:var(--mono); color:var(--accent); font-size:1.1rem; flex:none;
+    transition:transform .2s ease;
+  }
+  .faq-item[open] summary .mark{transform:rotate(45deg);}
+  .faq-item .a{padding:0 1.4rem 1.2rem; color:var(--text2); max-width:60ch;}
+
   /* ---------- closer ---------- */
   .closer{
     text-align:center; padding-block:clamp(3rem,7vw,5rem); border-top:1px solid var(--border);
@@ -263,6 +332,7 @@
       <a href="#console">Console</a>
       <a href="#why">Why EDEC</a>
       <a href="#screens">Screens</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/CMDRForcer/ED-Engineering-Companion">GitHub</a>
     </nav>
     <a class="navcta" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">Get EDEC</a>
@@ -438,6 +508,37 @@
           </picture>
           <figcaption>Operations — one next action</figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Before you fly</p>
+        <h2>Frequently asked.</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is ED Engineering Companion free?<span class="mark">+</span></summary>
+          <p class="a">Yes. EDEC is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does EDEC upload my data anywhere?<span class="mark">+</span></summary>
+          <p class="a">Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I run EDEC alongside EDMC?<span class="mark">+</span></summary>
+          <p class="a">Yes. Both read the same local Journal files independently, so EDEC runs alongside EDMC (and other Journal-reading tools) without conflict.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to create an account?<span class="mark">+</span></summary>
+          <p class="a">No account is required to use EDEC. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What platforms and languages does EDEC support?<span class="mark">+</span></summary>
+          <p class="a">EDEC runs on Windows 10 and 11, with the interface available in English, German, Spanish and French.</p>
+        </details>
       </div>
     </div>
   </section>
