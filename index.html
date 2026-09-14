@@ -91,7 +91,7 @@
       "name": "Can I run EDEC alongside EDMC?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Both read the same local Journal files independently, so EDEC runs alongside EDMC (and other Journal-reading tools) without conflict."
+        "text": "Yes. Both read the same local Journal files independently and read-only, so there's no file conflict. If you enable EDDN uploads in both, each sends its own copy of the same events, which is harmless but redundant — leave that switch on in only one of them."
       }
     },
     {
@@ -529,7 +529,7 @@
         </details>
         <details class="faq-item">
           <summary>Can I run EDEC alongside EDMC?<span class="mark">+</span></summary>
-          <p class="a">Yes. Both read the same local Journal files independently, so EDEC runs alongside EDMC (and other Journal-reading tools) without conflict.</p>
+          <p class="a">Yes. Both read the same local Journal files independently and read-only, so there's no file conflict. If you enable EDDN uploads in both, each sends its own copy of the same events — harmless but redundant, so leave that switch on in only one of them.</p>
         </details>
         <details class="faq-item">
           <summary>Do I need to create an account?<span class="mark">+</span></summary>
