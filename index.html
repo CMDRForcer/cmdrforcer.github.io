@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ED Engineering Companion</title>
+<meta name="description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first. Free, open source, GPLv3.">
+<link rel="canonical" href="https://cmdrforcer.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ED Engineering Companion">
+<meta property="og:description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first.">
+<meta property="og:url" content="https://cmdrforcer.github.io/">
+<meta property="og:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ED Engineering Companion">
+<meta name="twitter:description" content="Slot-accurate Elite Dangerous engineering companion, built from your local Journal. Free and open source.">
+<meta name="twitter:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b1020'/%3E%3Cpath d='M4 4h8M4 4v8M28 4h-8M28 4v8M4 28h8M4 28v-8M28 28h-8M28 28v-8' stroke='%23ff9d5c' stroke-width='2.4' fill='none'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='none' stroke='%235ad1e6' stroke-width='2.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ED Engineering Companion",
+  "alternateName": "EDEC",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "description": "Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data, fleet-wide and offline-first.",
+  "softwareVersion": "1.5.3",
+  "url": "https://cmdrforcer.github.io/",
+  "downloadUrl": "https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest",
+  "screenshot": "https://cmdrforcer.github.io/images/edec-operations.png",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "author": {
+    "@type": "Person",
+    "name": "CMDRForcer"
+  }
+}
+</script>
+<style>
+  :root{
+    --bg:#0b1020; --bg2:#0e1426; --panel:#141c30; --panel-raised:#1c2740;
+    --border:#2b3550; --text:#f7f2e9; --text2:#d7d2c6; --muted:#8b93a8;
+    --accent:#ff9d5c; --accent-dim:#c97a49; --cyan:#5ad1e6; --cyan-dim:#3a97ad;
+    --success:#5fd6a6;
+    --display:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+    --body:"Manrope",ui-sans-serif,system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text2);
+    font-family:var(--body); font-size:16px; line-height:1.6;
+    padding-inline:20px;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 82% -6%, rgba(90,209,230,.09), transparent 60%),
+      radial-gradient(ellipse 700px 420px at 8% 8%, rgba(255,157,92,.07), transparent 60%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3{font-family:var(--display); color:var(--text); text-wrap:balance; margin:0;}
+  a{color:var(--cyan);}
+  img{max-width:100%; display:block; height:auto;}
+  .wrap{max-width:1120px; margin-inline:auto;}
+  .eyebrow{
+    font-family:var(--mono); font-size:.72rem; font-weight:600; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--cyan); margin:0 0 .9rem;
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 8px 1px var(--cyan);}
+
+  /* ---------- HUD bracket frame: a real Elite Dangerous UI motif,
+     angled corner brackets like a scanner/targeting readout ---------- */
+  .hud{
+    position:relative; border:1px solid var(--border); background:var(--panel);
+    border-radius:2px;
+  }
+  .hud::before,.hud::after,.hud .bl,.hud .br{
+    content:""; position:absolute; width:18px; height:18px; pointer-events:none;
+  }
+  .hud::before{top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent);}
+  .hud::after{top:-1px; right:-1px; border-top:2px solid var(--accent); border-right:2px solid var(--accent);}
+  .hud .bl{bottom:-1px; left:-1px; border-bottom:2px solid var(--cyan); border-left:2px solid var(--cyan);}
+  .hud .br{bottom:-1px; right:-1px; border-bottom:2px solid var(--cyan); border-right:2px solid var(--cyan);}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:20; padding-block:14px;
+    background:linear-gradient(var(--bg) 78%, transparent);
+    backdrop-filter:blur(6px);
+  }
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:1rem;}
+  .brand{display:flex; align-items:center; gap:.6rem; font-family:var(--display); font-weight:700;
+    color:var(--text); font-size:1.05rem; letter-spacing:.01em; text-decoration:none;}
+  .brand svg{flex:none;}
+  nav.links{display:flex; gap:1.6rem; font-family:var(--mono); font-size:.78rem;
+    letter-spacing:.04em; text-transform:uppercase;}
+  nav.links a{color:var(--text2); text-decoration:none; border-bottom:1px solid transparent;}
+  nav.links a:hover{color:var(--cyan); border-color:var(--cyan);}
+  .navcta{
+    font-family:var(--mono); font-size:.78rem; font-weight:600; letter-spacing:.03em;
+    color:var(--bg); background:var(--accent); padding:.5rem .9rem; border-radius:3px;
+    text-decoration:none; text-transform:uppercase; white-space:nowrap;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:clamp(2.5rem,6vw,4.5rem) 1rem;}
+  .hero .wrap{display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:center;}
+  .hero h1{font-size:clamp(2rem,4.4vw,3.1rem); line-height:1.08; font-weight:700;}
+  .hero h1 em{font-style:normal; color:var(--accent);}
+  .hero p.lead{font-size:1.08rem; color:var(--text2); margin:1.1rem 0 1.6rem; max-width:46ch;}
+  .cta-row{display:flex; flex-wrap:wrap; gap:.8rem; align-items:center; margin-bottom:1.2rem;}
+  .btn{
+    font-family:var(--mono); font-weight:600; font-size:.85rem; letter-spacing:.03em;
+    text-decoration:none; padding:.85rem 1.3rem; border-radius:3px; text-transform:uppercase;
+    display:inline-flex; align-items:center; gap:.5rem;
+  }
+  .btn-primary{background:var(--accent); color:#1a0f06;}
+  .btn-primary:hover{background:#ffb37c;}
+  .btn-ghost{border:1px solid var(--border); color:var(--text2);}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .meta-line{
+    font-family:var(--mono); font-size:.78rem; color:var(--muted); letter-spacing:.02em;
+  }
+  .meta-line b{color:var(--text2); font-weight:600;}
+  .hero-shot{padding:8px;}
+  .hero-shot img{border-radius:1px; aspect-ratio:16/9; width:100%; object-fit:cover;}
+
+  /* ---------- status strip ---------- */
+  .strip{border-block:1px solid var(--border); margin-block:clamp(2rem,5vw,3.5rem);}
+  .strip .wrap{
+    display:flex; flex-wrap:wrap; gap:1.6rem 2.4rem; padding-block:1rem;
+    font-family:var(--mono); font-size:.78rem; color:var(--muted); letter-spacing:.03em;
+  }
+  .strip .wrap span{color:var(--success);}
+  .strip .wrap i{font-style:normal; color:var(--text2); font-weight:600;}
+
+  /* ---------- sections ---------- */
+  section{padding-block:clamp(2.5rem,5vw,4rem);}
+  .section-head{max-width:62ch; margin-bottom:2.2rem;}
+  .section-head h2{font-size:clamp(1.5rem,3vw,2.1rem);}
+  .section-head p{color:var(--text2); margin-top:.7rem; font-size:1.02rem;}
+
+  /* ---------- console module grid ---------- */
+  .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border);
+    border:1px solid var(--border);}
+  .grid .cell{background:var(--panel); padding:1.5rem 1.4rem; position:relative;}
+  .grid .cell .tag{font-family:var(--mono); font-size:.68rem; color:var(--cyan);
+    letter-spacing:.1em; text-transform:uppercase; margin-bottom:.6rem; display:block;}
+  .grid .cell h3{font-size:1rem; font-weight:600; margin-bottom:.5rem;}
+  .grid .cell p{font-size:.9rem; color:var(--text2); margin:0;}
+
+  /* ---------- why / readout ---------- */
+  .why{display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(2rem,5vw,4rem); align-items:start;}
+  .why .copy p{margin:0 0 1.1rem; max-width:52ch;}
+  .why .copy p:last-child{margin-bottom:0;}
+  .why .copy strong{color:var(--text); font-weight:700;}
+  .readout{padding:1.4rem;}
+  .readout .rowline{
+    display:flex; justify-content:space-between; gap:1rem; padding-block:.65rem;
+    border-bottom:1px solid var(--border); font-family:var(--mono); font-size:.82rem;
+  }
+  .readout .rowline:last-child{border-bottom:none;}
+  .readout .rowline .k{color:var(--muted); letter-spacing:.03em; text-transform:uppercase; font-size:.72rem;}
+  .readout .rowline .v{color:var(--text2); text-align:right;}
+  .grade-row{display:flex; gap:.4rem; margin-top:1rem; flex-wrap:wrap;}
+  .grade-pill{
+    font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--bg);
+    background:var(--cyan); border-radius:2px; padding:.28rem .55rem;
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem;}
+  .gallery figure{margin:0; padding:6px;}
+  .gallery figure img{aspect-ratio:16/9; width:100%; object-fit:cover;}
+  .gallery figcaption{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--muted); padding:.6rem .3rem .1rem;
+  }
+
+  /* ---------- closer ---------- */
+  .closer{
+    text-align:center; padding-block:clamp(3rem,7vw,5rem); border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:radial-gradient(ellipse 700px 300px at 50% 0%, rgba(255,157,92,.08), transparent 65%);
+  }
+  .closer h2{font-size:clamp(1.6rem,3.4vw,2.3rem); margin-bottom:.8rem;}
+  .closer p{max-width:48ch; margin:0 auto 1.7rem; color:var(--text2);}
+  .closer .cta-row{justify-content:center;}
+
+  /* ---------- footer ---------- */
+  footer{padding-block:2.4rem 3rem;}
+  footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+    font-size:.82rem; color:var(--muted);}
+  footer a{color:var(--muted); text-decoration:none;}
+  footer a:hover{color:var(--cyan);}
+  footer .links{display:flex; gap:1.2rem; flex-wrap:wrap;}
+  footer .disclaimer{max-width:70ch; margin-top:1.2rem; font-size:.76rem; line-height:1.55;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero .hero-shot{order:-1;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .why{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    nav.links{display:none;}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:1fr;}
+    .cta-row{flex-direction:column; align-items:stretch;}
+    .btn{justify-content:center;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .eyebrow::before{animation:blink 2.4s ease-in-out infinite;}
+  }
+  @keyframes blink{0%,100%{opacity:1;} 50%{opacity:.35;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M4 4h8M4 4v8M28 4h-8M28 4v8M4 28h8M4 28v-8M28 28h-8M28 28v-8"
+          stroke="#ff9d5c" stroke-width="2.6" fill="none"/>
+        <circle cx="16" cy="16" r="4.6" fill="none" stroke="#5ad1e6" stroke-width="2.3"/>
+      </svg>
+      ED ENGINEERING COMPANION
+    </a>
+    <nav class="links">
+      <a href="#console">Console</a>
+      <a href="#why">Why EDEC</a>
+      <a href="#screens">Screens</a>
+      <a href="https://github.com/CMDRForcer/ED-Engineering-Companion">GitHub</a>
+    </nav>
+    <a class="navcta" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">Get EDEC</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Live from your Commander's journal</p>
+        <h1>Your ships. Your slots.<br>Your <em>next action</em>.</h1>
+        <p class="lead">EDEC reads your local Elite Dangerous Journal and turns it into one
+          cockpit for engineering, unlocks, materials, mining, state hunting, Powerplay,
+          finances, fleet and exobiology — grounded in the exact physical module slots of
+          your real ships, not a generic build.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">
+            ↓ Download latest release</a>
+          <a class="btn btn-ghost" href="https://github.com/CMDRForcer/ED-Engineering-Companion">View source on GitHub</a>
+        </div>
+        <p class="meta-line"><b>v1.5.3</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
+      </div>
+      <div class="hud hero-shot">
+        <span class="bl"></span><span class="br"></span>
+        <img src="images/edec-operations.png" width="1920" height="1080" loading="eager"
+             alt="EDEC Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <span>●</span> <i>Offline-first</i> — core works from local files only
+      <span>●</span> <i>Slot-bound</i> — plans track the physical slot, not a ship type
+      <span>●</span> <i>Opt-in only</i> — Frontier CAPI, INARA, EDDN, Spansh stay explicit switches
+      <span>●</span> <i>GPLv3</i> — free, source-available, yours to audit
+    </div>
+  </div>
+
+  <section id="console">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Console modules</p>
+        <h2>Every workspace a Commander actually runs.</h2>
+        <p>Eight tools sharing one Journal-derived state — nothing re-entered, nothing guessed twice.</p>
+      </div>
+      <div class="grid">
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">01 · Operations</span>
+          <h3>One next action</h3>
+          <p>Every tracked build, missing material, route and unlock resolves to a single clear answer to “what now?”.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">02 · Engineering</span>
+          <h3>Your ships, your slots</h3>
+          <p>Plan the exact Core Internal, Optional Internal, Hardpoint and Utility slot of every known hull — not a generic loadout.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">03 · Wishlist</span>
+          <h3>Journal-confirmed progress</h3>
+          <p>Installed modules, grades, experimental effects, credits, fleet moves, scans and unlocks update from evidence, not assumption.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">04 · Engineers</span>
+          <h3>Unlock &amp; Tech Broker guides</h3>
+          <p>Searchable capabilities, prerequisite chains and one-time Human and Guardian unlock tracking.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">05 · Field tools</span>
+          <h3>Mining, State Finds &amp; HGE</h3>
+          <p>Material routes, a live Mining Finder, State Finds and hazard-relief-zone assistance while you fly.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">06 · Exobiology</span>
+          <h3>Biological survey workspace</h3>
+          <p>Sample-distance guidance, genus completion tracking and a lifetime-earned ledger for exobiology runs.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">07 · Commander</span>
+          <h3>Finances &amp; fleet, at a glance</h3>
+          <p>Live credit ticker, assets, average CR/h, ranks, reputation, fleet overview and a searchable flight record.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">08 · Privacy</span>
+          <h3>Offline-first by default</h3>
+          <p>The core runs entirely from local files. Frontier CAPI, INARA, EDDN and Spansh stay explicit, controlled additions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="wrap why">
+      <div class="copy">
+        <p class="eyebrow">Why EDEC</p>
+        <h2 style="margin-bottom:1.1rem;">Most build tools model a <em style="font-style:normal;color:var(--accent)">type</em> of ship.<br>EDEC models <em style="font-style:normal;color:var(--cyan)">your</em> ship.</h2>
+        <p>The specific hull with its ShipID, physical module slots and current <code style="font-family:var(--mono);color:var(--text)">Loadout</code> — then connected to the rest of your Commander state: materials, Engineer access, routes, credits, fleet, signals and scans.</p>
+        <p>A plan stays attached to the <strong>slot</strong>, so two identical Multi-cannons never get confused. EDEC separates <strong>observed facts</strong>, <strong>planned work</strong> and <strong>predictions</strong> instead of presenting guesses as certainty. And you can plan for a ship parked across the bubble <strong>without switching to it in-game</strong>.</p>
+      </div>
+      <div class="hud readout">
+        <span class="bl"></span><span class="br"></span>
+        <div class="rowline"><span class="k">Tracked slot groups</span><span class="v">Core · Optional · Hardpoint · Utility</span></div>
+        <div class="rowline"><span class="k">Source of truth</span><span class="v">Local Journal + Status.json</span></div>
+        <div class="rowline"><span class="k">Engineering grades</span><span class="v">
+          <span class="grade-row" style="display:inline-flex;justify-content:flex-end;">
+            <span class="grade-pill">G1</span><span class="grade-pill">G2</span><span class="grade-pill">G3</span><span class="grade-pill">G4</span><span class="grade-pill">G5</span>
+          </span></span></div>
+        <div class="rowline"><span class="k">Optional integrations</span><span class="v">Frontier CAPI · INARA · EDDN · Spansh</span></div>
+        <div class="rowline"><span class="k">Languages</span><span class="v">EN · DE · ES · FR</span></div>
+        <div class="rowline"><span class="k">License</span><span class="v">GNU GPLv3</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Viewport</p>
+        <h2>A closer look at the console.</h2>
+      </div>
+      <div class="gallery">
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-engineering.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Engineering page showing physical ship slots and installed module grades">
+          <figcaption>Engineering — physical slots</figcaption>
+        </figure>
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-wishlist.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Wishlist page tracking engineering blueprint and material progress">
+          <figcaption>Wishlist — blueprint progress</figcaption>
+        </figure>
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-mining-finder.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Mining Finder page ranking nearby hotspots and commodities">
+          <figcaption>Mining Finder — ranked hotspots</figcaption>
+        </figure>
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-powerplay.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Powerplay page showing Powerplay 2.0 standing and merits">
+          <figcaption>Powerplay 2.0 — standing &amp; merits</figcaption>
+        </figure>
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-exobiology.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Exobiology page with sample-distance guidance and genus completion">
+          <figcaption>Exobiology — survey workspace</figcaption>
+        </figure>
+        <figure class="hud"><span class="bl"></span><span class="br"></span>
+          <img src="images/edec-operations.png" width="1920" height="1080" loading="lazy"
+               alt="EDEC Operations page showing the single next recommended action">
+          <figcaption>Operations — one next action</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <p class="eyebrow" style="justify-content:center;">Fly prepared</p>
+      <h2>Turn your Journal into a plan.</h2>
+      <p>Free, open source, offline-first. No account, no telemetry you didn't switch on.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">
+          ↓ Download latest release</a>
+        <a class="btn btn-ghost" href="https://github.com/CMDRForcer/ED-Engineering-Companion">GitHub repository</a>
+        <a class="btn btn-ghost" href="https://ko-fi.com/cmdrforcer">Support on Ko-fi</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© CMDRForcer · Licensed GNU GPLv3</div>
+    <div class="links">
+      <a href="https://github.com/CMDRForcer/ED-Engineering-Companion/blob/main/CHANGELOG.md">Changelog</a>
+      <a href="https://github.com/CMDRForcer/ED-Engineering-Companion/issues">Report a bug</a>
+      <a href="https://github.com/CMDRForcer/ED-Engineering-Companion/blob/main/docs/EDEC_User_Manual_Privacy_EN_21.164.pdf">Privacy manual</a>
+      <a href="https://ko-fi.com/cmdrforcer">Ko-fi</a>
+    </div>
+  </div>
+  <p class="wrap disclaimer">ED Engineering Companion is an independent third-party project and is not affiliated with Frontier Developments. Elite Dangerous is a trademark of Frontier Developments plc.</p>
+</footer>
+
+</body>
+</html>
