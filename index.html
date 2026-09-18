@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ED Engineering Companion</title>
+<title>ED-Frame</title>
 <meta name="description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first. Free, open source, GPLv3.">
 <meta name="google-site-verification" content="pTQ1wSss9-XCtUqQZglTNHCWRQ-l_kMuAjtGYscCRb4" />
 <meta name="robots" content="index, follow">
@@ -11,15 +11,15 @@
 <link rel="canonical" href="https://cmdrforcer.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="ED Engineering Companion">
-<meta property="og:title" content="ED Engineering Companion">
+<meta property="og:site_name" content="ED-Frame">
+<meta property="og:title" content="ED-Frame">
 <meta property="og:description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first.">
 <meta property="og:url" content="https://cmdrforcer.github.io/">
 <meta property="og:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ED Engineering Companion">
+<meta name="twitter:title" content="ED-Frame">
 <meta name="twitter:description" content="Slot-accurate Elite Dangerous engineering companion, built from your local Journal. Free and open source.">
 <meta name="twitter:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
 <meta name="theme-color" content="#0b1020">
@@ -32,12 +32,12 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "ED Engineering Companion",
-  "alternateName": "EDEC",
+  "name": "ED-Frame",
+  "alternateName": "FRAME",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Windows 10, Windows 11",
   "description": "Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data, fleet-wide and offline-first.",
-  "softwareVersion": "1.5.3",
+  "softwareVersion": "1.5.5",
   "url": "https://cmdrforcer.github.io/",
   "downloadUrl": "https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest",
   "screenshot": "https://cmdrforcer.github.io/images/edec-operations.png",
@@ -61,7 +61,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "ED Engineering Companion",
+  "name": "ED-Frame",
   "url": "https://cmdrforcer.github.io/"
 }
 </script>
@@ -72,15 +72,15 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is ED Engineering Companion free?",
+      "name": "Is ED-Frame free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. EDEC is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs."
+        "text": "Yes. ED-Frame is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs."
       }
     },
     {
       "@type": "Question",
-      "name": "Does EDEC upload my data anywhere?",
+      "name": "Does ED-Frame upload my data anywhere?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it."
@@ -88,7 +88,7 @@
     },
     {
       "@type": "Question",
-      "name": "Can I run EDEC alongside EDMC?",
+      "name": "Can I run ED-Frame alongside EDMC?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. Both read the same local Journal files independently and read-only, so there's no file conflict. If you enable EDDN uploads in both, each sends its own copy of the same events, which is harmless but redundant — leave that switch on in only one of them."
@@ -99,15 +99,15 @@
       "name": "Do I need to create an account?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No account is required to use EDEC. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations."
+        "text": "No account is required to use ED-Frame. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations."
       }
     },
     {
       "@type": "Question",
-      "name": "What platforms and languages does EDEC support?",
+      "name": "What platforms and languages does ED-Frame support?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "EDEC runs on Windows 10 and 11, with the interface available in English, German, Spanish and French."
+        "text": "ED-Frame runs on Windows 10 and 11, with the interface available in English, German, Spanish and French."
       }
     }
   ]
@@ -326,16 +326,16 @@
           stroke="#ff9d5c" stroke-width="2.6" fill="none"/>
         <circle cx="16" cy="16" r="4.6" fill="none" stroke="#5ad1e6" stroke-width="2.3"/>
       </svg>
-      ED ENGINEERING COMPANION
+      ED-FRAME
     </a>
     <nav class="links">
       <a href="#console">Console</a>
-      <a href="#why">Why EDEC</a>
+      <a href="#why">Why ED-Frame</a>
       <a href="#screens">Screens</a>
       <a href="#faq">FAQ</a>
       <a href="https://github.com/CMDRForcer/ED-Engineering-Companion">GitHub</a>
     </nav>
-    <a class="navcta" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">Get EDEC</a>
+    <a class="navcta" href="https://github.com/CMDRForcer/ED-Engineering-Companion/releases/latest">Get ED-Frame</a>
   </div>
 </header>
 
@@ -346,7 +346,7 @@
       <div>
         <p class="eyebrow">Live from your Commander's journal</p>
         <h1>Your ships. Your slots.<br>Your <em>next action</em>.</h1>
-        <p class="lead">EDEC reads your local Elite Dangerous Journal and turns it into one
+        <p class="lead">ED-Frame reads your local Elite Dangerous Journal and turns it into one
           cockpit for engineering, unlocks, materials, mining, state hunting, Powerplay,
           finances, fleet and exobiology — grounded in the exact physical module slots of
           your real ships, not a generic build.</p>
@@ -355,7 +355,7 @@
             ↓ Download latest release</a>
           <a class="btn btn-ghost" href="https://github.com/CMDRForcer/ED-Engineering-Companion">View source on GitHub</a>
         </div>
-        <p class="meta-line"><b>v1.5.3</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
+        <p class="meta-line"><b>v1.5.5</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
       </div>
       <div class="hud hero-shot">
         <span class="bl"></span><span class="br"></span>
@@ -363,7 +363,7 @@
           <source srcset="images/edec-operations.webp" type="image/webp">
           <img src="images/edec-operations.png" width="1920" height="1080" loading="eager"
                fetchpriority="high"
-               alt="EDEC Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
+               alt="ED-Frame Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
         </picture>
       </div>
     </div>
@@ -433,10 +433,10 @@
   <section id="why">
     <div class="wrap why">
       <div class="copy">
-        <p class="eyebrow">Why EDEC</p>
-        <h2 style="margin-bottom:1.1rem;">Most build tools model a <em style="font-style:normal;color:var(--accent)">type</em> of ship.<br>EDEC models <em style="font-style:normal;color:var(--cyan)">your</em> ship.</h2>
+        <p class="eyebrow">Why ED-Frame</p>
+        <h2 style="margin-bottom:1.1rem;">Most build tools model a <em style="font-style:normal;color:var(--accent)">type</em> of ship.<br>ED-Frame models <em style="font-style:normal;color:var(--cyan)">your</em> ship.</h2>
         <p>The specific hull with its ShipID, physical module slots and current <code style="font-family:var(--mono);color:var(--text)">Loadout</code> — then connected to the rest of your Commander state: materials, Engineer access, routes, credits, fleet, signals and scans.</p>
-        <p>A plan stays attached to the <strong>slot</strong>, so two identical Multi-cannons never get confused. EDEC separates <strong>observed facts</strong>, <strong>planned work</strong> and <strong>predictions</strong> instead of presenting guesses as certainty. And you can plan for a ship parked across the bubble <strong>without switching to it in-game</strong>.</p>
+        <p>A plan stays attached to the <strong>slot</strong>, so two identical Multi-cannons never get confused. ED-Frame separates <strong>observed facts</strong>, <strong>planned work</strong> and <strong>predictions</strong> instead of presenting guesses as certainty. And you can plan for a ship parked across the bubble <strong>without switching to it in-game</strong>.</p>
       </div>
       <div class="hud readout">
         <span class="bl"></span><span class="br"></span>
@@ -464,7 +464,7 @@
           <picture>
             <source srcset="images/edec-engineering.webp" type="image/webp">
             <img src="images/edec-engineering.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Engineering page showing physical ship slots and installed module grades">
+                 alt="ED-Frame Engineering page showing physical ship slots and installed module grades">
           </picture>
           <figcaption>Engineering — physical slots</figcaption>
         </figure>
@@ -472,7 +472,7 @@
           <picture>
             <source srcset="images/edec-wishlist.webp" type="image/webp">
             <img src="images/edec-wishlist.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Wishlist page tracking engineering blueprint and material progress">
+                 alt="ED-Frame Wishlist page tracking engineering blueprint and material progress">
           </picture>
           <figcaption>Wishlist — blueprint progress</figcaption>
         </figure>
@@ -480,7 +480,7 @@
           <picture>
             <source srcset="images/edec-mining-finder.webp" type="image/webp">
             <img src="images/edec-mining-finder.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Mining Finder page ranking nearby hotspots and commodities">
+                 alt="ED-Frame Mining Finder page ranking nearby hotspots and commodities">
           </picture>
           <figcaption>Mining Finder — ranked hotspots</figcaption>
         </figure>
@@ -488,7 +488,7 @@
           <picture>
             <source srcset="images/edec-powerplay.webp" type="image/webp">
             <img src="images/edec-powerplay.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Powerplay page showing Powerplay 2.0 standing and merits">
+                 alt="ED-Frame Powerplay page showing Powerplay 2.0 standing and merits">
           </picture>
           <figcaption>Powerplay 2.0 — standing &amp; merits</figcaption>
         </figure>
@@ -496,7 +496,7 @@
           <picture>
             <source srcset="images/edec-exobiology.webp" type="image/webp">
             <img src="images/edec-exobiology.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Exobiology page with sample-distance guidance and genus completion">
+                 alt="ED-Frame Exobiology page with sample-distance guidance and genus completion">
           </picture>
           <figcaption>Exobiology — survey workspace</figcaption>
         </figure>
@@ -504,7 +504,7 @@
           <picture>
             <source srcset="images/edec-operations.webp" type="image/webp">
             <img src="images/edec-operations.png" width="1920" height="1080" loading="lazy"
-                 alt="EDEC Operations page showing the single next recommended action">
+                 alt="ED-Frame Operations page showing the single next recommended action">
           </picture>
           <figcaption>Operations — one next action</figcaption>
         </figure>
@@ -520,24 +520,24 @@
       </div>
       <div class="faq-list">
         <details class="faq-item">
-          <summary>Is ED Engineering Companion free?<span class="mark">+</span></summary>
-          <p class="a">Yes. EDEC is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs.</p>
+          <summary>Is ED-Frame free?<span class="mark">+</span></summary>
+          <p class="a">Yes. ED-Frame is free and open source under the GNU GPLv3 license, with no ads and no paid tier. You can also read every line of the code it runs.</p>
         </details>
         <details class="faq-item">
-          <summary>Does EDEC upload my data anywhere?<span class="mark">+</span></summary>
+          <summary>Does ED-Frame upload my data anywhere?<span class="mark">+</span></summary>
           <p class="a">Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it.</p>
         </details>
         <details class="faq-item">
-          <summary>Can I run EDEC alongside EDMC?<span class="mark">+</span></summary>
+          <summary>Can I run ED-Frame alongside EDMC?<span class="mark">+</span></summary>
           <p class="a">Yes. Both read the same local Journal files independently and read-only, so there's no file conflict. If you enable EDDN uploads in both, each sends its own copy of the same events — harmless but redundant, so leave that switch on in only one of them.</p>
         </details>
         <details class="faq-item">
           <summary>Do I need to create an account?<span class="mark">+</span></summary>
-          <p class="a">No account is required to use EDEC. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations.</p>
+          <p class="a">No account is required to use ED-Frame. Signing in to Frontier CAPI or INARA is only needed if you choose to enable those optional integrations.</p>
         </details>
         <details class="faq-item">
-          <summary>What platforms and languages does EDEC support?<span class="mark">+</span></summary>
-          <p class="a">EDEC runs on Windows 10 and 11, with the interface available in English, German, Spanish and French.</p>
+          <summary>What platforms and languages does ED-Frame support?<span class="mark">+</span></summary>
+          <p class="a">ED-Frame runs on Windows 10 and 11, with the interface available in English, German, Spanish and French.</p>
         </details>
       </div>
     </div>
@@ -569,7 +569,7 @@
       <a href="https://ko-fi.com/cmdrforcer">Ko-fi</a>
     </div>
   </div>
-  <p class="wrap disclaimer">ED Engineering Companion is an independent third-party project and is not affiliated with Frontier Developments. Elite Dangerous is a trademark of Frontier Developments plc.</p>
+  <p class="wrap disclaimer">ED-Frame is an independent third-party project and is not affiliated with Frontier Developments. Elite Dangerous is a trademark of Frontier Developments plc.</p>
 </footer>
 
 </body>
