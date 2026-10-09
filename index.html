@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ED-Frame</title>
-<meta name="description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first. Free, open source, GPLv3.">
+<title>ED-Frame 1.0 — Elite Dangerous Commander tools</title>
+<meta name="description" content="ED-Frame 1.0: engineering, mining and merit routes, module and ship searches, markets, exploration and Commander tools. Local Journal data plus our own community catalog server. Free, open source, Windows.">
 <meta name="google-site-verification" content="pTQ1wSss9-XCtUqQZglTNHCWRQ-l_kMuAjtGYscCRb4" />
 <meta name="robots" content="index, follow">
 <meta name="author" content="CMDRForcer">
@@ -12,16 +12,16 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="ED-Frame">
-<meta property="og:title" content="ED-Frame">
-<meta property="og:description" content="Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data — fleet-wide, offline-first.">
+<meta property="og:title" content="ED-Frame 1.0">
+<meta property="og:description" content="Your Elite Dangerous Commander workspace: engineering, mining and merit routes, markets and module/ship searches — backed by our own community catalog server.">
 <meta property="og:url" content="https://cmdrforcer.github.io/">
 <meta property="og:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
 <meta property="og:image:alt" content="ED-Frame Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ED-Frame">
-<meta name="twitter:description" content="Slot-accurate Elite Dangerous engineering companion, built from your local Journal. Free and open source.">
+<meta name="twitter:title" content="ED-Frame 1.0">
+<meta name="twitter:description" content="Engineering, mining, markets and Commander tools, backed by local Journal evidence and our own community catalog server. Free and open source.">
 <meta name="twitter:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
 <meta name="twitter:image:alt" content="ED-Frame Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
 <meta name="theme-color" content="#0b1020">
@@ -39,8 +39,8 @@
   "applicationCategory": "UtilitiesApplication",
   "applicationSubCategory": "Elite Dangerous companion app",
   "operatingSystem": "Windows 10, Windows 11",
-  "description": "Slot-accurate Elite Dangerous engineering companion. Plan upgrades on your real ships' physical module slots from local Journal data, fleet-wide and offline-first.",
-  "softwareVersion": "1.5.8",
+  "description": "ED-Frame 1.0 combines local Journal-driven engineering, mining and merit routes, markets, module and ship searches, exploration and Commander tools with its own public community catalog server.",
+  "softwareVersion": "1.0",
   "url": "https://cmdrforcer.github.io/",
   "downloadUrl": "https://github.com/CMDRForcer/ED-Frame/releases/latest",
   "screenshot": "https://cmdrforcer.github.io/images/edec-operations.png",
@@ -88,7 +88,7 @@
       "name": "Does ED-Frame upload my data anywhere?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it."
+        "text": "The ED-Frame and EDDN community connections are enabled by default for new profiles and can be disabled in Connections. They support public observations; ED-Frame's own server does not accept Commander names/FIDs, raw Journal files, private builds or credentials. Frontier CAPI and INARA require separate setup. Local Commander data and retained observations remain on your computer."
       }
     },
     {
@@ -334,7 +334,8 @@
       ED-FRAME
     </a>
     <nav class="links">
-      <a href="#console">Console</a>
+      <a href="#console">Features</a>
+      <a href="#server">Our server</a>
       <a href="#why">Why ED-Frame</a>
       <a href="#screens">Screens</a>
       <a href="#faq">FAQ</a>
@@ -349,18 +350,18 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Live from your Commander's journal</p>
+        <p class="eyebrow">ED-Frame 1.0 · Local evidence. Shared galaxy knowledge.</p>
         <h1>Your ships. Your slots.<br>Your <em>next action</em>.</h1>
         <p class="lead">ED-Frame reads your local Elite Dangerous Journal and turns it into one
           cockpit for engineering, unlocks, materials, mining, state hunting, Powerplay,
-          finances, fleet and exobiology — grounded in the exact physical module slots of
-          your real ships, not a generic build.</p>
+          finances, fleet and exobiology. Our own community catalog server adds shared
+          markets, mining observations and module/ship searches to your local Commander workspace.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://github.com/CMDRForcer/ED-Frame/releases/latest">
-            ↓ Download latest release</a>
+            ↓ Download ED-Frame 1.0</a>
           <a class="btn btn-ghost" href="https://github.com/CMDRForcer/ED-Frame">View source on GitHub</a>
         </div>
-        <p class="meta-line"><b>v1.5.8</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
+        <p class="meta-line"><b>Version 1.0</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
         <p class="meta-line" style="opacity:.65;margin-top:.3rem;">Formerly known as ED Engineering Companion (EDEC).</p>
       </div>
       <div class="hud hero-shot">
@@ -379,17 +380,50 @@
     <div class="wrap">
       <span>●</span> <i>Offline-first</i> — core works from local files only
       <span>●</span> <i>Slot-bound</i> — plans track the physical slot, not a ship type
-      <span>●</span> <i>Opt-in only</i> — Frontier CAPI, INARA, EDDN, Spansh stay explicit switches
+      <span>●</span> <i>Our own server</i> — shared catalogs, visible connection controls
       <span>●</span> <i>GPLv3</i> — free, source-available, yours to audit
     </div>
   </div>
+
+  <section id="server">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Now backed by our own community catalog server</p>
+        <h2>A shared picture of the galaxy.</h2>
+        <p>ED-Frame continuously collects supported public EDDN observations and makes them available to your finders. Your local Journal remains the source for your Commander state.</p>
+      </div>
+      <div class="grid">
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">Mining &amp; Powerplay</span>
+          <h3>Plan with evidence</h3>
+          <p>Combine rings, hotspots and measured yields with prices, demand and explicit Powerplay facts. Market checks and merit suitability stay separate; gaps stay visible.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">Markets &amp; stations</span>
+          <h3>Find what you need</h3>
+          <p>Search commodity offers, station services, module inventories and ship availability. Compare observation age, pad information and observed or inferred prices.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">Local continuity</span>
+          <h3>Keep your observations</h3>
+          <p>Retained data stays useful offline. Regional SQLite ring searches read the relevant area while preserving original observations and their history.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">Connection controls</span>
+          <h3>Know what is shared</h3>
+          <p>ED-Frame and EDDN community services are enabled for new profiles and can be disabled in Connections. Our server accepts supported public observations, not Commander identities, raw Journals, private builds or credentials.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.2rem;">Freshness follows the original observation time. Coverage depends on reported activity; prices, stock, yield and merits are not guarantees. <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame-1.0-Guide-EN.md">Read the 1.0 guide and privacy details</a> · <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame-1.0-Guide-DE.md" lang="de">Deutsche Anleitung</a></p>
+    </div>
+  </section>
 
   <section id="console">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Console modules</p>
         <h2>Every workspace a Commander actually runs.</h2>
-        <p>Eight tools sharing one Journal-derived state — nothing re-entered, nothing guessed twice.</p>
+        <p>Explore the features individually: your ships and progress from local evidence, with shared galaxy observations from enabled services.</p>
       </div>
       <div class="grid">
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
@@ -409,13 +443,13 @@
         </div>
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
           <span class="tag">04 · Engineers</span>
-          <h3>Unlock &amp; Tech Broker guides</h3>
-          <p>Searchable capabilities, prerequisite chains and one-time Human and Guardian unlock tracking.</p>
+          <h3>Engineer unlock guides</h3>
+          <p>Search capabilities, follow prerequisite chains and travel to the Engineers suited to your planned upgrades.</p>
         </div>
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
-          <span class="tag">05 · Field tools</span>
-          <h3>Mining, State Finds &amp; HGE</h3>
-          <p>Material routes, a live Mining Finder, State Finds and hazard-relief-zone assistance while you fly.</p>
+          <span class="tag">05 · Mining Finder</span>
+          <h3>Mining and merit routes</h3>
+          <p>Choose commodity, method and radius. Compare site evidence, price, demand, pad and quote age; plan Acquire, Reinforce and Undermine with explicit verification status.</p>
         </div>
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
           <span class="tag">06 · Exobiology</span>
@@ -428,9 +462,69 @@
           <p>Live credit ticker, assets, average CR/h, ranks, reputation, fleet overview and a searchable flight record.</p>
         </div>
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
-          <span class="tag">08 · Privacy</span>
-          <h3>Offline-first by default</h3>
-          <p>The core runs entirely from local files. Frontier CAPI, INARA, EDDN and Spansh stay explicit, controlled additions.</p>
+          <span class="tag">08 · Mining yield</span>
+          <h3>Measurements you can inspect</h3>
+          <p>Use Prospector and refining evidence, including supported community measurements. Measured samples, hotspot reports and ring-type estimates remain distinct.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">09 · Module &amp; Ship Finder</span>
+          <h3>Shop for your actual hull</h3>
+          <p>Find observed station inventories and prices. Check module fit for your current ship and physical slot, with access and price-confidence information.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">10 · Commodity Finder</span>
+          <h3>Buy stock. Find demand.</h3>
+          <p>Compare buying stock or selling demand with quantity, distance, landing-pad and quote-age filters. Observed offers remain clearly time-stamped.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">11 · Station services</span>
+          <h3>A useful nearby stop</h3>
+          <p>Search nearby observed station services from Nav and compare distance and available station information.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">12 · State Finds &amp; HGE</span>
+          <h3>Hunt supported signals</h3>
+          <p>Compare sightings, system state, distance and reported signal lifetime. Local observations, live reports and BGS predictions stay separately labelled.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">13 · Powerplay</span>
+          <h3>Your pledge and progress</h3>
+          <p>Track Journal-reported rank, merits and pledge information. Explicit control observations stay separate from a power's mere presence in a system.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">14 · Materials</span>
+          <h3>Prepare without overspending</h3>
+          <p>Review live inventory, farming guidance and material trades that account for stock reserved by tracked builds.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">15 · Technology Brokers</span>
+          <h3>Track one-time unlocks</h3>
+          <p>Follow Human and Guardian unlock requirements, compare required materials with your inventory and find guidance for missing items.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">16 · Missions</span>
+          <h3>Keep deadlines in sight</h3>
+          <p>Review active tasks, destinations and rewards; group recorded massacre missions and follow observed Community Goals.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">17 · Exploration</span>
+          <h3>Review your unsold scans</h3>
+          <p>Inspect Journal-derived cartography, noteworthy bodies and possible discovery bonuses. Values remain transparent estimates.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">18 · Surface navigation</span>
+          <h3>Return to a saved waypoint</h3>
+          <p>Save planetary coordinates and follow bearing and surface distance with the in-app compass or a separate overlay when live position data is available.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">19 · Logbook</span>
+          <h3>Your searchable flight record</h3>
+          <p>Search flights, dockings, crafting and trades, inspect session activity and keep your own local notes.</p>
+        </div>
+        <div class="hud cell"><span class="bl"></span><span class="br"></span>
+          <span class="tag">20 · Appearance &amp; connections</span>
+          <h3>Make the workspace yours</h3>
+          <p>Six themes, four languages, scaling and overlays. Review service status and manage community connections, Frontier CAPI, INARA and catalog sources.</p>
         </div>
       </div>
     </div>
@@ -452,7 +546,8 @@
           <span class="grade-row" style="display:inline-flex;justify-content:flex-end;">
             <span class="grade-pill">G1</span><span class="grade-pill">G2</span><span class="grade-pill">G3</span><span class="grade-pill">G4</span><span class="grade-pill">G5</span>
           </span></span></div>
-        <div class="rowline"><span class="k">Optional integrations</span><span class="v">Frontier CAPI · INARA · EDDN · Spansh</span></div>
+        <div class="rowline"><span class="k">Shared galaxy catalog</span><span class="v">Our own ED-Frame server</span></div>
+        <div class="rowline"><span class="k">Connection controls</span><span class="v">EDDN · Frontier CAPI · INARA · Spansh · EDSM</span></div>
         <div class="rowline"><span class="k">Languages</span><span class="v">EN · DE · ES · FR</span></div>
         <div class="rowline"><span class="k">License</span><span class="v">GNU GPLv3</span></div>
       </div>
@@ -531,7 +626,7 @@
         </details>
         <details class="faq-item">
           <summary>Does ED-Frame upload my data anywhere?<span class="mark">+</span></summary>
-          <p class="a">Not by default. The core app works entirely from your local Journal files. Frontier CAPI, INARA, EDDN and Spansh are separate, explicit switches you turn on yourself — nothing is sent anywhere unless you enable it.</p>
+          <p class="a">ED-Frame and EDDN community connections are enabled by default for new profiles and can be disabled in Connections. They support public observations; our server does not accept Commander names/FIDs, raw Journal files, private builds or credentials. Frontier CAPI and INARA require separate setup. Your local Commander data and retained observations remain on your computer. <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame-1.0-Guide-EN.md#connections-and-privacy">Read the connection and privacy details.</a></p>
         </details>
         <details class="faq-item">
           <summary>Can I run ED-Frame alongside EDMC?<span class="mark">+</span></summary>
@@ -545,6 +640,10 @@
           <summary>What platforms and languages does ED-Frame support?<span class="mark">+</span></summary>
           <p class="a">ED-Frame runs on Windows 10 and 11, with the interface available in English, German, Spanish and French.</p>
         </details>
+        <details class="faq-item">
+          <summary>Why is 1.0 newer than the older 1.5 releases?<span class="mark">+</span></summary>
+          <p class="a">1.0 starts the new public ED-Frame release line and succeeds the earlier EDEC/ED-Frame builds, including 1.5.43. Older tags and downloads remain available as outdated historical releases. Use the current download link instead of sorting the old version numbers.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -553,7 +652,7 @@
     <div class="wrap">
       <p class="eyebrow" style="justify-content:center;">Fly prepared</p>
       <h2>Turn your Journal into a plan.</h2>
-      <p>Free, open source, offline-first. No account, no telemetry you didn't switch on.</p>
+      <p>Free and open source. Local Commander data, shared public catalogs and visible connection controls. No ED-Frame account required.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://github.com/CMDRForcer/ED-Frame/releases/latest">
           ↓ Download latest release</a>
@@ -571,7 +670,8 @@
     <div class="links">
       <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/CHANGELOG.md">Changelog</a>
       <a href="https://github.com/CMDRForcer/ED-Frame/issues">Report a bug</a>
-      <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame_User_Manual_Privacy_EN_1.5.5.pdf">Privacy manual</a>
+      <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame-1.0-Guide-EN.md">1.0 guide &amp; privacy</a>
+      <a href="https://github.com/CMDRForcer/ED-Frame/blob/main/docs/ED-Frame-1.0-Guide-DE.md" lang="de">Deutsche Anleitung</a>
       <a href="https://ko-fi.com/cmdrforcer">Ko-fi</a>
     </div>
   </div>
