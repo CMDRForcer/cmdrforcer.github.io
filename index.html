@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ED-Frame 1.0.7 — Elite Dangerous Commander tools</title>
+<title>ED-Frame 1.0.9 — Elite Dangerous Commander tools</title>
 <meta name="description" content="ED-Frame 1.0: engineering, mining and merit routes, module and ship searches, markets, exploration and Commander tools. Local Journal data plus our own community catalog server. Free, open source, Windows.">
 <meta name="google-site-verification" content="pTQ1wSss9-XCtUqQZglTNHCWRQ-l_kMuAjtGYscCRb4" />
 <meta name="robots" content="index, follow">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="ED-Frame">
-<meta property="og:title" content="ED-Frame 1.0.7">
+<meta property="og:title" content="ED-Frame 1.0.9">
 <meta property="og:description" content="Your Elite Dangerous Commander workspace: engineering, mining and merit routes, markets and module/ship searches — backed by our own community catalog server.">
 <meta property="og:url" content="https://cmdrforcer.github.io/">
 <meta property="og:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
@@ -20,11 +20,13 @@
 <meta property="og:image:height" content="1080">
 <meta property="og:image:alt" content="ED-Frame Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ED-Frame 1.0.7">
+<meta name="twitter:title" content="ED-Frame 1.0.9">
 <meta name="twitter:description" content="Engineering, mining, markets and Commander tools, backed by local Journal evidence and our own community catalog server. Free and open source.">
 <meta name="twitter:image" content="https://cmdrforcer.github.io/images/edec-operations.png">
 <meta name="twitter:image:alt" content="ED-Frame Operations page showing the next recommended action, an engineering build queue and route to the nearest Engineer">
 <meta name="theme-color" content="#0b1020">
+<link rel="stylesheet" href="server-statistics.css">
+<script src="server-statistics.js" defer></script>
 <link rel="preload" as="image" href="images/edec-operations.webp" fetchpriority="high">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b1020'/%3E%3Cpath d='M4 4h8M4 4v8M28 4h-8M28 4v8M4 28h8M4 28v-8M28 28h-8M28 28v-8' stroke='%23ff9d5c' stroke-width='2.4' fill='none'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='none' stroke='%235ad1e6' stroke-width='2.2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +42,7 @@
   "applicationSubCategory": "Elite Dangerous companion app",
   "operatingSystem": "Windows 10, Windows 11",
   "description": "ED-Frame 1.0 combines local Journal-driven engineering, mining and merit routes, markets, module and ship searches, exploration and Commander tools with its own public community catalog server.",
-  "softwareVersion": "1.0.7",
+  "softwareVersion": "1.0.9",
   "url": "https://cmdrforcer.github.io/",
   "downloadUrl": "https://github.com/CMDRForcer/ED-Frame/releases/latest",
   "screenshot": "https://cmdrforcer.github.io/images/edec-operations.png",
@@ -350,7 +352,7 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <p class="eyebrow">ED-Frame 1.0.7 · Local evidence. Shared galaxy knowledge.</p>
+        <p class="eyebrow">ED-Frame 1.0.9 · Local evidence. Shared galaxy knowledge.</p>
         <h1>Your ships. Your slots.<br>Your <em>next action</em>.</h1>
         <p class="lead">ED-Frame reads your local Elite Dangerous Journal and turns it into one
           cockpit for engineering, unlocks, materials, mining, state hunting, Powerplay,
@@ -358,11 +360,11 @@
           markets, mining observations and module/ship searches to your local Commander workspace.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://github.com/CMDRForcer/ED-Frame/releases/latest">
-            ↓ Download ED-Frame 1.0.7</a>
+            ↓ Download ED-Frame 1.0.9</a>
           <a class="btn btn-ghost" href="https://github.com/CMDRForcer/ED-Frame">View source on GitHub</a>
         </div>
-        <p class="meta-line"><b>Version 1.0.7</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
-        <p class="meta-line">Mining &amp; Powerplay update: faster broad calculations, corrected regional markets and bounded checks through catalog server 0.9.2. <a href="https://github.com/CMDRForcer/ED-Frame/releases/tag/1.0.7">What changed</a></p>
+        <p class="meta-line"><b>Version 1.0.9</b> · Free &amp; open source · GPLv3 · Windows 10/11 · EN · DE · ES · FR</p>
+        <p class="meta-line">New in 1.0.9: trading loops, more Carrier commodity offers and a refreshed cockpit — backed by catalog server 0.9.4. <a href="https://github.com/CMDRForcer/ED-Frame/releases/tag/1.0.9">What changed</a></p>
         <p class="meta-line" style="opacity:.65;margin-top:.3rem;">Formerly known as ED Engineering Companion (EDEC).</p>
       </div>
       <div class="hud hero-shot">
@@ -392,6 +394,71 @@
         <p class="eyebrow">Now backed by our own community catalog server</p>
         <h2>A shared picture of the galaxy.</h2>
         <p>ED-Frame continuously collects supported public EDDN observations and makes them available to your finders. Your local Journal remains the source for your Commander state.</p>
+      </div>
+      <div class="server-dashboard" id="server-statistics" data-endpoint="https://vps-20b25c36.vps.ovh.net/v1/status" aria-busy="false" aria-labelledby="server-statistics-title">
+        <div class="stats-topline">
+          <h3 id="server-statistics-title">Our catalog, in numbers.</h3>
+          <div class="stats-controls">
+            <span class="stats-status" data-status data-state="checking" role="status" aria-live="polite">Checking server</span>
+            <button class="stats-refresh" type="button" data-refresh>↻ Refresh statistics</button>
+          </div>
+        </div>
+        <p class="stats-notice" data-notice hidden></p>
+        <div class="stats-grid">
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 6 8 1M7 8l4 8m6-7-4 7"/></svg>Systems &amp; stations</span>
+            <strong class="stats-value" data-stat="systems">—</strong>
+            <p class="stats-caption">systems · <span data-stat="stations">—</span> stations</p>
+            <p class="stats-detail">Public geography and station metadata</p>
+          </article>
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 5v9l9 5 9-5V8m-9 5v9"/></svg>Commodity markets</span>
+            <strong class="stats-value" data-stat="markets">—</strong>
+            <p class="stats-caption">commodity rows · <span data-stat="commodities">—</span> commodities</p>
+            <p class="stats-detail"><span data-stat="freshMarkets1h">—</span> observed ≤ 1 h · <span data-stat="freshMarkets24h">—</span> ≤ 24 h</p>
+          </article>
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 21 10-14m-6-3c5-1 8 1 11 5l-3 3c-2-4-5-6-8-5L6 5l3-1Z"/></svg>Mining evidence</span>
+            <strong class="stats-value" data-stat="sites">—</strong>
+            <p class="stats-caption">ring / site records · <span data-stat="siteHotspotPercent">—</span> with hotspot evidence</p>
+            <p class="stats-detail"><span data-stat="yield_samples">—</span> yield samples at <span data-stat="measured_sites">—</span> measured sites</p>
+          </article>
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z"/></svg>Outfitting</span>
+            <strong class="stats-value" data-stat="module_offers">—</strong>
+            <p class="stats-caption">offers at <span data-stat="outfitting_stations">—</span> stations</p>
+            <p class="stats-detail"><span data-stat="priced_module_offers">—</span> with observed prices · availability ≠ price</p>
+          </article>
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 17-9-4-9 4 9-17Zm0 0v13"/></svg>Shipyards</span>
+            <strong class="stats-value" data-stat="ship_offers">—</strong>
+            <p class="stats-caption">offers at <span data-stat="shipyard_stations">—</span> stations</p>
+            <p class="stats-detail"><span data-stat="catalog_ships">—</span> hull definitions · inventories, not guaranteed prices</p>
+          </article>
+          <article class="hud stats-card"><span class="bl"></span><span class="br"></span>
+            <span class="stats-label"><svg class="stats-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg>System state &amp; sightings</span>
+            <strong class="stats-value" data-stat="state_bgs_snapshots">—</strong>
+            <p class="stats-caption">BGS system snapshots · last 24 h</p>
+            <p class="stats-detail"><span data-stat="state_signal_sightings">—</span> signal sightings · sightings do not confirm active HGEs</p>
+          </article>
+        </div>
+        <div class="hud stats-intake"><span class="bl"></span><span class="br"></span>
+          <div class="stats-intake-head"><h4>What's coming in through EDDN?</h4><span class="stats-window">Latest 24 hourly buckets</span></div>
+          <div class="stats-intake-grid">
+            <div><strong data-stat="messages">—</strong><span>relay messages received</span></div>
+            <div><strong class="stats-used" data-stat="usedMessages">—</strong><span>used for our catalog · <span data-stat="usedPercent">—</span></span></div>
+            <div><strong class="stats-ignored" data-stat="ignoredMessages">—</strong><span>not projected into our catalog</span></div>
+            <div><strong data-stat="errors">—</strong><span>processing errors</span></div>
+          </div>
+          <div class="stats-meter" data-meter-label role="img" aria-label="Waiting for incoming message statistics"><span class="stats-meter-used" data-meter="used"></span><span class="stats-meter-ignored" data-meter="ignored"></span><span class="stats-meter-errors" data-meter="errors"></span></div>
+          <p class="stats-explanation"><span data-stat="projectedRows">—</span> row projections, including updates to existing records. Messages outside our supported projections are counted separately; they are not processing errors. The current hour is partial.</p>
+          <details class="stats-details"><summary>Explore the incoming message types</summary>
+            <div class="stats-table-wrap"><table class="stats-table"><caption class="stats-explanation">Received messages and catalog projections by public EDDN schema</caption><thead><tr><th scope="col">Message type</th><th scope="col">Received</th><th scope="col">Used</th><th scope="col">Row projections</th><th scope="col">Errors</th></tr></thead><tbody data-schemas></tbody></table></div>
+          </details>
+        </div>
+        <p class="stats-footnote"><span>Catalog snapshot: <time data-time="snapshot">waiting for server</time></span><span>Last relay receipt: <time data-time="receipt">unknown</time></span></p>
+        <p class="stats-footnote">Refreshes every 5 minutes while this page is visible. These counts describe stored observations, not coverage of the entire galaxy. <a href="https://vps-20b25c36.vps.ovh.net/v1/status" rel="noopener" target="_blank">Public statistics source ↗</a></p>
+        <noscript><p class="stats-notice">Enable JavaScript to display current figures, or <a href="https://vps-20b25c36.vps.ovh.net/v1/status">open the public statistics</a>.</p></noscript>
       </div>
       <div class="grid">
         <div class="hud cell"><span class="bl"></span><span class="br"></span>
