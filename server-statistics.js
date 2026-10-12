@@ -48,7 +48,11 @@
     meter.setAttribute("aria-label", `${count(flow.usedMessages)} messages used; ${count(flow.ignoredMessages)} not projected; ${count(flow.errors)} errors`);
     setTime("snapshot", data.generatedAt);
     setTime("receipt", data.collector?.last_received_at);
-    const old = Date.now() - Date.parse(data.generatedAt) > 15 * 60 * 1000 || data.cache?.stale === true;
+    const snapshotAge = Date.now() - Date.parse(data.generatedAt);
+    // Allow the bounded background refresh (120 s) plus its 30 s poll interval.
+    const refreshSeconds = numeric(data.cache?.refreshSeconds) ?? 300;
+    const old = snapshotAge > 15 * 60 * 1000 ||
+      (data.cache?.stale === true && snapshotAge > (refreshSeconds + 150) * 1000);
     const receiving = validDate(data.collector?.last_received_at) && Date.now() - Date.parse(data.collector.last_received_at) < 3 * 60 * 1000;
     badge.dataset.state = saved || old || !receiving ? "delayed" : "current";
     badge.textContent = saved ? "Saved snapshot" : old ? "Snapshot delayed" : receiving ? "Receiving data" : "No recent relay receipt";
